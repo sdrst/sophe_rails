@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
   protect_from_forgery
+  before_action :authorize_request, except: [:index, :create, :show]
 
   def index
     render json: User.all
   end
 
   def show
-    render json: user
+    render json: user.jsonify
   end
 
   def create

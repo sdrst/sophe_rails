@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  protect_from_forgery
   # logins in user
   def login
     user = User.find_by_email(params[:email])
@@ -15,7 +16,7 @@ class SessionsController < ApplicationController
         }, status: :ok
     # in case authentication failed
     else
-      render json: { failure: 'authentication failed' }, status: :unauthorized
+      render json: { msg: 'authentication failed' }, status: :unauthorized
     end
   end
 end

@@ -16,7 +16,6 @@ RSpec.describe LabsController, type: :controller do
       name: "lab 1"
     )
   end
-
   let(:dirty_lab_params) do
     {
       name: "lab 2",
