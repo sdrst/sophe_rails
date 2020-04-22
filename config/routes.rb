@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :labs, only: [:index, :create, :show, :update, :destroy]
   resources :users, only: [:index, :create, :show, :update, :destroy]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  post 'login', to: 'sessions#login', as: 'login'
+  post 'logout', to: 'sessions#logout', as: 'logout'
 end
