@@ -41,18 +41,21 @@ RSpec.describe User, type: :model do
 
   context "password hashing" do
     it "changes the password" do
-      expect(user[:password]).not_to eq(password)
+      expect(user.password_digest).not_to eq(password)
     end
 
-    it "properly hashes the password" do
-      is_password = true if BCrypt::Password.new(user[:password]) == password
-      expect(is_password).to be true
+    it "returns false when authentication fails" do
+      expect(user.authenticate("not_password")).to be false
+    end
+
+    it "returns the user when authentication succeeds" do
+      expect(user.authenticate(password)).to be user
     end
   end
 
   it "fields are unique and raise exceptions when they are not" do
     User.create(user_params)
-    [:username, :email, :password].each do |field|
+    [:username, :email].each do |field|
       new_user = User.new(user_params.except(field))
 
       new_user[field] = eval(field.to_s)
