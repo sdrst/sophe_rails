@@ -3,5 +3,4 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :create, :show, :update, :destroy]
 
   post 'login', to: 'sessions#login', as: 'login'
-  post 'logout', to: 'sessions#logout', as: 'logout'
 end
