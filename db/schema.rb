@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_234034) do
+ActiveRecord::Schema.define(version: 2020_04_24_032519) do
 
   create_table "events", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,19 @@ ActiveRecord::Schema.define(version: 2020_04_22_234034) do
     t.date "event_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "goals", force: :cascade do |t|
+    t.string "project_id"
+    t.text "goal_text"
+    t.date "expected_date"
+    t.date "completed_date"
+  end
+
+  create_table "reports", force: :cascade do |t|
+    t.string "links"
+    t.string "project_id"
+    t.text "text"
   end
 
   create_table "labs", force: :cascade do |t|
